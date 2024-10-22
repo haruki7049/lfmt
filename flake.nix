@@ -53,12 +53,6 @@
           cargo-doc = craneLib.cargoDoc {
             inherit src cargoArtifacts;
           };
-          llvm-cov = craneLib.cargoLlvmCov {
-            inherit cargoArtifacts src;
-            cargoExtraArgs = "--locked";
-            cargoLlvmCovCommand = "test";
-            cargoLlvmCovExtraArgs = "--text --output-dir $out";
-          };
         in
         {
           _module.args.pkgs = import inputs.nixpkgs {
@@ -70,7 +64,6 @@
               lfmt
               cargo-clippy
               cargo-doc
-              llvm-cov
               ;
           };
 
@@ -79,7 +72,6 @@
               lfmt
               cargo-clippy
               cargo-doc
-              llvm-cov
               ;
             default = lfmt;
             doc = cargo-doc;
