@@ -1,4 +1,6 @@
 {
+  description = "A CLI code-formatter for any lisp dialects, written by Rust-lang";
+
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     systems.url = "github:nix-systems/default";

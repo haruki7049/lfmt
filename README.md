@@ -1,3 +1,3 @@
-# lisp-fmt-rs
+# lfmt
 
-A CLI code-formatter written in Rust-lang which is inspired by [lisp-format](https://github.com/eschulte/lisp-format), for any lisp dialect.
+A CLI code-formatter for any lisp dialects, written by Rust-lang.
