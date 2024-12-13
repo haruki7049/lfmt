@@ -84,7 +84,7 @@
             projectRootFile = "flake.nix";
             programs.nixfmt.enable = true;
             programs.rustfmt.enable = true;
-            programs.taplo.enable = true;
+            #programs.taplo.enable = true; # BUG: taplo failed when I use it on aarch64-darwin
             programs.actionlint.enable = true;
             programs.mdformat.enable = true;
           };
