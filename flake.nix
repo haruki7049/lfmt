@@ -1,6 +1,4 @@
 {
-  description = "A CLI code-formatter for any lisp dialects, written by Rust-lang";
-
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     systems.url = "github:nix-systems/default";
@@ -47,6 +45,7 @@
           lfmt = craneLib.buildPackage {
             inherit src cargoArtifacts;
             strictDeps = true;
+
             doCheck = true;
           };
           cargo-clippy = craneLib.cargoClippy {
@@ -62,6 +61,41 @@
             inherit system overlays;
           };
 
+          treefmt = {
+            projectRootFile = "flake.nix";
+
+            # Nix
+            programs.nixfmt.enable = true;
+
+            # Rust
+            programs.rustfmt.enable = true;
+
+            # TOML
+            programs.taplo.enable = true;
+
+            # GitHub Actions
+            programs.actionlint.enable = true;
+
+            # Markdown
+            programs.mdformat.enable = true;
+
+            # ShellScript
+            programs.shellcheck.enable = true;
+            programs.shfmt.enable = true;
+
+            settings.formatter = {
+              mdformat.excludes = [
+                "CODE_OF_CONDUCT.md"
+              ];
+            };
+          };
+
+          packages = {
+            inherit lfmt;
+            default = lfmt;
+            doc = cargo-doc;
+          };
+
           checks = {
             inherit
               lfmt
@@ -70,33 +104,17 @@
               ;
           };
 
-          packages = {
-            inherit
-              lfmt
-              cargo-clippy
-              cargo-doc
-              ;
-            default = lfmt;
-            doc = cargo-doc;
-          };
-
-          treefmt = {
-            projectRootFile = "flake.nix";
-            programs.nixfmt.enable = true;
-            programs.rustfmt.enable = true;
-            #programs.taplo.enable = true; # BUG: taplo failed when I use it on aarch64-darwin
-            programs.actionlint.enable = true;
-            programs.mdformat.enable = true;
-          };
-
           devShells.default = pkgs.mkShell {
             packages = [
+              # Rust
               rust
+
+              # Nix
               pkgs.nil
             ];
 
             shellHook = ''
-              export PS1="\n[nix-shell:\w]\$ "
+              export PS1="\n[nix-shell:\w]$ "
             '';
           };
         };
