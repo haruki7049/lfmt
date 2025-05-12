@@ -1,6 +1,6 @@
-use std::fs::read_to_string;
-use lfmt::parser;
 use clap::Parser;
+use lfmt::parser;
+use std::fs::read_to_string;
 use std::path::PathBuf;
 
 fn main() -> anyhow::Result<()> {
