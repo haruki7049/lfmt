@@ -10,8 +10,7 @@ pub struct LispFormatterParser;
 pub struct Program;
 
 fn parse_pair(pair: Pair<Rule>) -> anyhow::Result<Program> {
-    dbg!(pair);
-    todo!();
+    Ok(Program { })
 }
 
 pub fn parse(s: &str) -> anyhow::Result<Program> {

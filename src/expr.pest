@@ -1,1 +1,6 @@
-program = { SOI ~ EOI }
+program = @{ SOI ~ sexp+ ~ EOI }
+
+sexp = @{ punct_word* ~ left_parenthis ~ punct_word* ~ right_parenthis ~ punct_word* }
+left_parenthis = @{ "(" }
+right_parenthis = @{ ")" }
+punct_word = @{ " " | "\t" | "\n" }

@@ -20,6 +20,6 @@ struct CLIArgs {
 }
 
 fn eval(str: String) -> anyhow::Result<String> {
-    let _result = parser::parse(&str)?;
+    let result = parser::parse(&str)?;
     todo!();
 }
