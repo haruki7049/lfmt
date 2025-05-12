@@ -1,10 +1,10 @@
 use clap::Parser;
 
-fn main() {
+fn main() -> anyhow::Result<()> {
     let args: CommandLineArgs = CommandLineArgs::parse();
 
     println!("The file argument's value: {}", args.file);
-    todo!();
+    Ok(())
 }
 
 #[derive(Debug, Parser)]
