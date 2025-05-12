@@ -1,15 +1,16 @@
 use clap::Parser;
+use std::path::PathBuf;
 
 fn main() -> anyhow::Result<()> {
-    let args: CommandLineArgs = CommandLineArgs::parse();
+    let args: CLIArgs = CLIArgs::parse();
 
-    println!("The file argument's value: {}", args.file);
+    dbg!(args.path);
     Ok(())
 }
 
 #[derive(Debug, Parser)]
 #[command(version, about, author)]
-struct CommandLineArgs {
+struct CLIArgs {
     /// A target to format
-    file: String,
+    path: PathBuf,
 }
